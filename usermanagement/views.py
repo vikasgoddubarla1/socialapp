@@ -21,7 +21,6 @@ from .functions import *
 
 #----------------------------------------------------------USER VIEWS ------------------------------------------------------------------------
 class CreateUser(generics.CreateAPIView):
-    
     serializer_class = UserSerializer
     
     def create(self, request, *args, **kwargs):

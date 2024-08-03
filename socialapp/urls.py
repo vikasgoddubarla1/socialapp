@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('usermanagement.urls')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('api/', include('postmanagement.urls')),
 ]
