@@ -24,6 +24,10 @@ class Country(models.Model):
     zone_name = models.CharField(max_length=100)
     gmtoffsetname = models.CharField(max_length=100, null=True, blank=True)
     
+    
+    class Meta:
+        verbose_name_plural = 'contries'
+    
     def __str__(self):
         return self.name
     
@@ -52,7 +56,7 @@ class User(AbstractBaseUser):
     username = models.CharField(max_length=55, unique=True)
     email = models.EmailField(max_length=50, unique=True)
     password = models.CharField(max_length=128)
-    profile_photo = models.ImageField(upload_to='users/profile_photo', blank=True, null=True, validators=[
+    profile_photo = models.ImageField(upload_to='media/users/profile_photo', blank=True, null=True, validators=[
         FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png']), validate_file_size,
     ], )
     bio = models.TextField(max_length=2000, null=True, blank=True)

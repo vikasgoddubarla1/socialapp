@@ -3,7 +3,7 @@ from .models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
-    confirmpassword = serializers.CharField(write_only=True)
+    confirmpassword = serializers.CharField(read_only=True)
     class Meta:
         model = User
         fields = ('id', 'firstname', 'lastname', 'username', 'password', 'confirmpassword', 'email', 'profile_photo', 'bio', 'is_private_account', 'is_admin', 'city', 'state', 'country_id')
@@ -44,30 +44,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
     def get_following(self, obj):
         followings = FollowUser.objects.filter(following=obj, request_status = 'approved').count()
         return followings if followings is not None else 0
-        # return [
-        #     {
-        #         'id':following.following.id,
-        #         'username':following.following.username,
-        #         'request_status':following.request_status,
-        #         'created_at':following.created_at
-                
-        #     }
-        #     for following in followings
-        # ]
-    
+            
     def get_followers(self, obj):
         followers = FollowUser.objects.filter(follower=obj, request_status='approved').count()
         return followers if followers is not None else 0
-        # return [
-        #     {
-                
-        #         'id':follower.id,
-        #         'username':follower.follower.username,
-        #         'request_status':follower.request_status,
-        #         'created_at':follower.created_at
-        #     }
-        #     for follower in followers
-        # ]
         
         
 class UserFollowersListSerializer(serializers.ModelSerializer):
