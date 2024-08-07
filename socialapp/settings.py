@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'usermanagement',
     'postmanagement',
+    'supportmanagement',
 ]
 
 MIDDLEWARE = [
